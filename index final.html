@@ -1,0 +1,1601 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ágora Token — Arte, comunidad y cultura</title>
+  <meta name="description" content="Ágora Token — una comunidad que abre un lugar en el podio de las bellas artes al arte contemporáneo, popular y digital.">
+
+  <!-- Marca la página como "con JS" para que el contenido no quede oculto si el JS está desactivado -->
+  <script>document.documentElement.classList.add('js');</script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:wght@400;500;600;700;800&display=swap');
+
+    :root {
+      --red: #d71920;
+      --red-dark: #9d1117;
+      --black: #080808;
+      --black-2: #111111;
+      --paper: #eee9df;
+      --gray: #9d9d9d;
+      --line: rgba(238, 233, 223, .18);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--black);
+    }
+
+    body {
+      background: var(--black);
+      color: var(--paper);
+      font-family: "Barlow Condensed", Arial, sans-serif;
+      overflow-x: hidden;
+      opacity: 1;
+      transition: opacity 700ms ease;           /* fade-in y fade-out */
+    }
+
+    html.fade-out body {
+      opacity: 0;
+    }
+
+    /* Fade-in: arranca en negro y el JS agrega .ready para mostrarlo */
+    html.js:not(.ready) body {
+      opacity: 0;
+    }
+
+    /* ---------- HEADER ---------- */
+
+    header {
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5vw;
+      background: rgba(8,8,8,.92);
+      border-bottom: 1px solid rgba(215,25,32,.55);
+      backdrop-filter: blur(8px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      text-decoration: none;
+      color: var(--paper);
+    }
+
+    .brand-name {
+      font-family: "Archivo Black", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      font-size: 22px;
+    }
+
+    .brand-name span {
+      color: var(--red);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+    }
+
+    nav a {
+      position: relative;
+      color: var(--paper);
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: .25s ease;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      left: 0;
+      bottom: -7px;
+      background: var(--red);
+      transition: .25s ease;
+    }
+
+    nav a:hover {
+      color: var(--red);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .menu-btn {
+      display: none;
+      border: 0;
+      background: transparent;
+      color: var(--paper);
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    /* ---------- HERO ---------- */
+
+    .hero {
+      position: relative;
+      min-height: 760px;
+      height: 100vh;
+      max-height: 900px;
+      padding-top: 82px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 74% 42%, rgba(215,25,32,.15), transparent 25%),
+        linear-gradient(125deg, #050505 0%, #111 52%, #080808 100%);
+    }
+
+    .shape {
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .shape-a {
+      width: 48vw;
+      height: 95vh;
+      right: -13vw;
+      top: 2%;
+      background: var(--red);
+      opacity: .9;
+      clip-path: polygon(58% 0, 100% 0, 100% 100%, 20% 100%, 0 46%);
+      transform: rotate(2deg);
+    }
+
+    .shape-b {
+      width: 34vw;
+      height: 75vh;
+      right: 3vw;
+      top: 13%;
+      background: var(--black);
+      clip-path: polygon(53% 0, 100% 51%, 65% 100%, 0 100%, 18% 35%);
+      transform: rotate(-4deg);
+    }
+
+    .shape-c {
+      width: 25vw;
+      height: 40vh;
+      right: 24vw;
+      bottom: -7vh;
+      background: var(--red-dark);
+      clip-path: polygon(50% 0, 100% 100%, 0 100%);
+      opacity: .8;
+    }
+
+    .shape-d {
+      width: 170px;
+      height: 170px;
+      left: 3vw;
+      top: 20%;
+      border: 2px solid var(--red);
+      transform: rotate(45deg);
+      opacity: .65;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 5;
+      width: min(1200px, 90%);
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--red);
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      display: block;
+      width: 44px;
+      height: 3px;
+      background: var(--red);
+    }
+
+    h1 {
+      max-width: 760px;
+      font-family: "Archivo Black", sans-serif;
+      font-size: clamp(64px, 10vw, 145px);
+      line-height: .79;
+      letter-spacing: -6px;
+      text-transform: uppercase;
+      color: var(--paper);
+    }
+
+    h1 .red {
+      color: var(--red);
+    }
+
+    .hero-copy {
+      max-width: 570px;
+      margin-top: 35px;
+      font-size: clamp(19px, 2vw, 25px);
+      line-height: 1.1;
+      color: #c9c5bd;
+    }
+
+    .hero-copy strong {
+      color: var(--paper);
+    }
+
+    .hero-number {
+      position: absolute;
+      right: 0;
+      bottom: -10px;
+      font-family: "Archivo Black", sans-serif;
+      font-size: clamp(110px, 17vw, 250px);
+      line-height: .7;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(238,233,223,.23);
+      user-select: none;
+    }
+
+    .scroll {
+      position: absolute;
+      z-index: 8;
+      left: 50%;
+      bottom: 28px;
+      transform: translateX(-50%);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 12px;
+      color: #aaa;
+      writing-mode: vertical-rl;
+    }
+
+    /* ---------- WORKSHOPS ---------- */
+
+    .workshops {
+      position: relative;
+      background: var(--red);
+      color: var(--black);
+      overflow: hidden;
+      padding: 0 0 100px;
+    }
+
+    /*
+      CINTA:
+      El contenedor tiene el fondo de la cinta.
+      Así nunca aparece el rojo detrás aunque el contenido
+      animado esté desplazándose.
+    */
+    .section-strip-wrapper {
+      width: 100%;
+      overflow: hidden;
+      background: var(--paper);
+      border-top: 2px solid var(--black);
+      border-bottom: 2px solid var(--black);
+    }
+
+    .section-strip {
+      display: flex;
+      width: max-content;
+      animation: ticker 22s linear infinite;
+      will-change: transform;
+    }
+
+    .section-strip span {
+      padding: 13px 35px;
+      font-family: "Archivo Black", sans-serif;
+      text-transform: uppercase;
+      font-size: 18px;
+      letter-spacing: 1px;
+      white-space: nowrap;
+      border-right: 2px solid var(--black);
+      color: var(--black);
+      background: var(--paper);
+    }
+
+    @keyframes ticker {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    .workshops-inner {
+      width: min(1200px, 90%);
+      margin: 0 auto;
+      padding-top: 72px;
+    }
+
+    .section-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      margin-bottom: 40px;
+    }
+
+    .section-label h2 {
+      font-family: "Archivo Black", sans-serif;
+      font-size: clamp(42px, 7vw, 85px);
+      line-height: .8;
+      text-transform: uppercase;
+      letter-spacing: -3px;
+    }
+
+    .section-label p {
+      max-width: 350px;
+      text-align: right;
+      font-size: 18px;
+      line-height: 1.05;
+      font-weight: 600;
+    }
+
+    /*
+      NUEVA GRILLA:
+      Los talleres ahora son tarjetas independientes.
+      Ya no ocupan obligatoriamente todo el ancho.
+    */
+    .workshops-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .workshop-card {
+      position: relative;
+      min-height: 600px;
+      background: var(--black);
+      color: var(--paper);
+      border: 2px solid var(--black);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 14px 14px 0 rgba(8,8,8,.18);
+    }
+
+    .workshop-card::before {
+      content: "01";
+      position: absolute;
+      z-index: 1;
+      right: -15px;
+      bottom: -55px;
+      font-family: "Archivo Black", sans-serif;
+      font-size: 180px;
+      color: rgba(215,25,32,.14);
+      pointer-events: none;
+    }
+
+    .workshop-card:nth-child(2)::before {
+      content: "02";
+    }
+
+    .workshop-card:nth-child(3)::before {
+      content: "03";
+    }
+
+    .workshop-card:nth-child(4)::before {
+      content: "04";
+    }
+
+    .workshop-art {
+      position: relative;
+      height: 260px;
+      min-height: 260px;
+      background:
+        linear-gradient(135deg, transparent 0 38%, var(--red) 38% 58%, transparent 58%),
+        #101010;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .workshop-art::before {
+      content: "";
+      position: absolute;
+      width: 72%;
+      height: 82%;
+      left: 12%;
+      top: 9%;
+      background: var(--paper);
+      clip-path: polygon(50% 0, 100% 82%, 0 82%);
+      opacity: .93;
+      transform: rotate(-6deg);
+    }
+
+    .workshop-art::after {
+      content: "RAP";
+      position: absolute;
+      left: 10%;
+      bottom: 10%;
+      font-family: "Archivo Black", sans-serif;
+      font-size: clamp(70px, 7vw, 110px);
+      color: var(--red);
+      transform: rotate(-8deg);
+    }
+
+    .workshop-link {
+      color: inherit;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .workshop-link:hover,
+    .workshop-link:focus-visible {
+      transform: translateY(-7px);
+      box-shadow: 18px 18px 0 rgba(8,8,8,.25);
+      outline: 3px solid var(--paper);
+      outline-offset: 4px;
+    }
+
+    .workshop-art.has-image {
+      padding: 0;
+      background: #111;
+    }
+
+    .workshop-art.has-image::before,
+    .workshop-art.has-image::after {
+      display: none;
+    }
+
+    .workshop-art.has-image img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .workshop-info {
+      position: relative;
+      z-index: 3;
+      padding: 35px 32px 38px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .workshop-info .tag {
+      color: var(--red);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .workshop-info h3 {
+      font-family: "Archivo Black", sans-serif;
+      text-transform: uppercase;
+      font-size: clamp(30px, 3vw, 46px);
+      line-height: .9;
+      letter-spacing: -2px;
+      margin-bottom: 22px;
+    }
+
+    .workshop-info p {
+      max-width: 470px;
+      font-size: 18px;
+      line-height: 1.12;
+      color: #bbb;
+    }
+
+    .pillars {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: auto;
+      padding-top: 25px;
+    }
+
+    .club-card-cta {
+      display: inline-block;
+      margin-top: 24px;
+      color: var(--red);
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .pillars span {
+      border: 1px solid #555;
+      padding: 6px 10px;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    .videogames-art {
+      background:
+        linear-gradient(45deg, transparent 0 38%, var(--red) 38% 57%, transparent 57%),
+        #101010;
+    }
+
+    .videogames-art::before {
+      clip-path: polygon(0 18%, 78% 0, 100% 62%, 30% 100%);
+      transform: rotate(5deg);
+      background: #252525;
+    }
+
+    .videogames-art::after {
+      content: "GAME";
+      color: var(--paper);
+      transform: rotate(7deg);
+    }
+
+    .reading-art {
+      background:
+        linear-gradient(135deg, transparent 0 42%, var(--red) 42% 63%, transparent 63%),
+        #101010;
+    }
+
+    .reading-art::before {
+      clip-path: polygon(12% 12%, 100% 0, 82% 100%, 0 82%);
+      transform: rotate(-4deg);
+      background: var(--paper);
+    }
+
+    .reading-art::after {
+      content: "LEER";
+      color: var(--red);
+      transform: rotate(-7deg);
+    }
+
+    .music-art {
+      background:
+        linear-gradient(45deg, transparent 0 32%, var(--red) 32% 55%, transparent 55%),
+        #101010;
+    }
+
+    .music-art::before {
+      width: 66%;
+      height: 66%;
+      left: 18%;
+      top: 15%;
+      background: var(--paper);
+      clip-path: polygon(0 0, 100% 15%, 82% 100%, 18% 80%);
+      transform: rotate(8deg);
+    }
+
+    .music-art::after {
+      content: "MÚSICA";
+      left: 6%;
+      bottom: 10%;
+      color: var(--red);
+      font-size: clamp(42px, 5vw, 76px);
+      transform: rotate(-5deg);
+    }
+
+    /* ---------- FUTURE SECTIONS ---------- */
+
+    .future-section {
+      position: relative;
+      overflow: hidden;
+      min-height: 390px;
+      display: flex;
+      align-items: center;
+      background: #0d0d0d;
+      border-top: 1px solid #252525;
+    }
+
+    .future-section::after {
+      content: "";
+      position: absolute;
+      width: 390px;
+      height: 390px;
+      right: -80px;
+      top: 0;
+      background: var(--red);
+      clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+      opacity: .9;
+    }
+
+    .future-section-red {
+      background: var(--red);
+      color: var(--black);
+    }
+
+    .future-section-red::after {
+      background: var(--black);
+    }
+
+    .future-inner {
+      position: relative;
+      z-index: 2;
+      width: min(1200px, 90%);
+      margin: 0 auto;
+      display: block;
+      padding: 85px 0 100px;
+    }
+
+    .future-number {
+      position: absolute;
+      right: 0;
+      top: 70px;
+      font-family: "Archivo Black", sans-serif;
+      font-size: clamp(100px, 15vw, 190px);
+      line-height: .7;
+      color: transparent;
+      -webkit-text-stroke: 1px currentColor;
+      opacity: .35;
+      pointer-events: none;
+    }
+
+    .future-inner > div:last-child {
+      width: 100%;
+      text-align: left;
+      position: relative;
+      z-index: 2;
+    }
+
+    .future-inner h2 {
+      text-align: left;
+    }
+
+    .future-inner p {
+      text-align: left;
+    }
+
+    /* ---------- REVISTA ---------- */
+
+    .magazine-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+      margin-top: 42px;
+      max-width: 1000px;
+    }
+
+    .magazine-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 330px;
+      background: var(--black);
+      color: var(--paper);
+      border: 2px solid var(--black);
+      text-decoration: none;
+      overflow: hidden;
+      transition: transform .2s ease;
+    }
+
+    .magazine-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .magazine-cover {
+      height: 235px;
+      background:
+        linear-gradient(135deg, transparent 0 34%, var(--red) 34% 58%, transparent 58%),
+        #181818;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .magazine-cover::before {
+      content: "ÁGORA";
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      font-family: "Archivo Black", sans-serif;
+      font-size: 34px;
+      color: var(--paper);
+      letter-spacing: -1px;
+    }
+
+    .magazine-cover::after {
+      content: "TOKEN";
+      position: absolute;
+      bottom: 15px;
+      right: 16px;
+      font-family: "Archivo Black", sans-serif;
+      font-size: 48px;
+      color: var(--black);
+      transform: rotate(-8deg);
+    }
+
+    .magazine-info {
+      padding: 18px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      flex: 1;
+    }
+
+    .magazine-info small {
+      color: var(--red);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 800;
+    }
+
+    .magazine-info strong {
+      font-family: "Archivo Black", sans-serif;
+      font-size: 25px;
+      line-height: .95;
+      text-transform: uppercase;
+    }
+
+    /* ---------- ENTREVISTAS ---------- */
+
+    .interview-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 26px;
+      margin-top: 42px;
+      max-width: 1000px;
+    }
+
+    .video-card {
+      background: var(--black);
+      border: 2px solid var(--black);
+      overflow: hidden;
+    }
+
+    .video-frame {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      display: block;
+      border: 0;
+      background: #111;
+    }
+
+    .video-title {
+      padding: 18px 20px 20px;
+      font-family: "Archivo Black", sans-serif;
+      font-size: 24px;
+      line-height: .95;
+      text-transform: uppercase;
+      color: var(--paper);
+    }
+
+    .all-interviews {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 30px;
+      padding: 14px 22px;
+      border: 2px solid currentColor;
+      color: inherit;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 800;
+      transition: .2s ease;
+    }
+
+    .all-interviews:hover {
+      background: var(--black);
+      color: var(--paper);
+    }
+
+    .future-tag {
+      text-transform: uppercase;
+      font-weight: 800;
+      letter-spacing: 4px;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .future-section:not(.future-section-red) .future-tag {
+      color: var(--red);
+    }
+
+    .future-inner h2 {
+      font-family: "Archivo Black", sans-serif;
+      text-transform: uppercase;
+      font-size: clamp(55px, 9vw, 115px);
+      line-height: .8;
+      letter-spacing: -5px;
+    }
+
+    .future-inner p {
+      margin-top: 24px;
+      font-size: 23px;
+      max-width: 470px;
+      line-height: 1;
+    }
+
+
+    /* ---------- PRÓXIMAMENTE ---------- */
+    .coming-soon {
+      min-height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-top: 35px;
+      padding: 35px 0;
+      border-top: 1px solid rgba(238,233,223,.25);
+      border-bottom: 1px solid rgba(238,233,223,.25);
+    }
+
+    .coming-soon span {
+      display: inline-block;
+      font-family: "Archivo Black", sans-serif;
+      font-size: clamp(36px, 7vw, 76px);
+      line-height: .9;
+      text-transform: uppercase;
+      letter-spacing: -2px;
+      color: var(--paper);
+    }
+
+    .future-section-red .coming-soon span {
+      color: var(--black);
+    }
+
+    /* ---------- NOVEDADES ---------- */
+    .news-section {
+      position: relative;
+      overflow: hidden;
+      padding: 90px 0 105px;
+      background: var(--paper);
+      color: var(--black);
+      border-top: 2px solid var(--black);
+    }
+
+    .news-inner {
+      width: min(1200px, 90%);
+      margin: 0 auto;
+    }
+
+    .news-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 25px;
+      margin-bottom: 38px;
+    }
+
+    .news-heading h2 {
+      font-family: "Archivo Black", sans-serif;
+      font-size: clamp(48px, 8vw, 100px);
+      line-height: .82;
+      letter-spacing: -4px;
+      text-transform: uppercase;
+    }
+
+    .news-heading p {
+      max-width: 360px;
+      font-size: 20px;
+      line-height: 1.05;
+      font-weight: 600;
+    }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 25px;
+    }
+
+    .news-card {
+      display: block;
+      min-width: 0;
+      background: var(--black);
+      color: var(--paper);
+      border: 2px solid var(--black);
+      box-shadow: 10px 10px 0 rgba(8,8,8,.12);
+      overflow: hidden;
+      text-decoration: none;
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+
+    .news-card:hover, .news-card:focus-visible {
+      transform: translateY(-6px);
+      box-shadow: 10px 16px 0 rgba(8,8,8,.16);
+      outline: none;
+    }
+
+    .news-card-cta {
+      display: inline-block;
+      margin-top: 18px;
+      color: var(--red);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .news-image {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      background: #d71920;
+    }
+
+    .news-image-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 4 / 3;
+      padding: 20px;
+      background:
+        linear-gradient(135deg, transparent 0 35%, var(--red) 35% 60%, transparent 60%),
+        var(--black-2);
+      color: var(--paper);
+      font-family: "Archivo Black", sans-serif;
+      font-size: clamp(28px, 4vw, 52px);
+      line-height: .9;
+      text-transform: uppercase;
+      overflow: hidden;
+    }
+
+    .news-info {
+      padding: 22px 23px 26px;
+    }
+
+    .news-info small {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--red);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .news-info h3 {
+      margin-bottom: 12px;
+      font-family: "Archivo Black", sans-serif;
+      font-size: clamp(23px, 2.5vw, 32px);
+      line-height: .95;
+      text-transform: uppercase;
+    }
+
+    .news-info p {
+      color: #c6c2bb;
+      font-size: 18px;
+      line-height: 1.1;
+    }
+
+    /* ---------- ABOUT ---------- */
+
+    .about {
+      position: relative;
+      background: var(--black);
+      padding: 120px 0;
+      overflow: hidden;
+    }
+
+    .about::before {
+      content: "";
+      position: absolute;
+      width: 55vw;
+      height: 70%;
+      right: -20vw;
+      top: 15%;
+      background: var(--red);
+      clip-path: polygon(55% 0, 100% 20%, 76% 100%, 0 76%);
+      opacity: .95;
+    }
+
+    .about-inner {
+      position: relative;
+      z-index: 2;
+      width: min(1200px, 90%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-title {
+      font-family: "Archivo Black", sans-serif;
+      font-size: clamp(55px, 8vw, 105px);
+      line-height: .8;
+      text-transform: uppercase;
+      letter-spacing: -4px;
+    }
+
+    .about-title span {
+      display: block;
+      color: var(--red);
+    }
+
+    .about-text {
+      max-width: 640px;
+      font-size: clamp(22px, 2.5vw, 32px);
+      line-height: 1.03;
+      color: #d0ccc4;
+    }
+
+    .about-text strong {
+      color: var(--paper);
+    }
+
+    .about-note {
+      margin-top: 28px;
+      padding-left: 18px;
+      border-left: 4px solid var(--red);
+      font-size: 17px;
+      line-height: 1.15;
+      color: #96928b;
+      max-width: 550px;
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    footer {
+      border-top: 1px solid #292929;
+      padding: 28px 5vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #777;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 12px;
+    }
+
+    footer b {
+      color: var(--red);
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+
+    @media (max-width: 1000px) {
+      .workshops-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .workshop-card {
+        min-height: 570px;
+      }
+
+      .workshop-card:first-child {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 1000px) {
+      .news-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 850px) {
+
+      .magazine-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .interview-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .news-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .news-heading {
+        display: block;
+      }
+
+      .news-heading p {
+        margin-top: 20px;
+      }
+
+      .future-number {
+        right: -10px;
+        top: 45px;
+        font-size: 100px;
+      }
+
+      header {
+        height: 70px;
+      }
+
+      nav {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 100%;
+        padding: 25px 7%;
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        background: rgba(8,8,8,.97);
+        border-bottom: 1px solid var(--red);
+      }
+
+      nav.open {
+        display: flex;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .hero {
+        min-height: 700px;
+        padding-top: 70px;
+      }
+
+      .shape-a {
+        width: 75vw;
+        right: -35vw;
+      }
+
+      .shape-b {
+        width: 55vw;
+        right: -12vw;
+      }
+
+      h1 {
+        letter-spacing: -3px;
+        font-size: clamp(56px, 15vw, 100px);
+      }
+
+      .hero-copy {
+        max-width: 65%;
+      }
+
+      .workshops-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .workshop-card:first-child {
+        grid-column: auto;
+      }
+
+      .workshop-card {
+        min-height: 0;
+      }
+
+      .workshop-art {
+        height: 270px;
+        min-height: 270px;
+      }
+
+      .workshop-info {
+        padding: 38px 30px 45px;
+      }
+
+      .pillars {
+        margin-top: 25px;
+        padding-top: 0;
+      }
+
+      .about-inner {
+        grid-template-columns: 1fr;
+        gap: 45px;
+      }
+
+      .about::before {
+        width: 90vw;
+        right: -60vw;
+      }
+    }
+
+    @media (max-width: 550px) {
+
+      .brand-name {
+        font-size: 17px;
+      }
+
+      .hero-copy {
+        max-width: 90%;
+        font-size: 20px;
+      }
+
+      .hero-number {
+        display: none;
+      }
+
+      .section-label {
+        display: block;
+      }
+
+      .section-label p {
+        text-align: left;
+        margin-top: 20px;
+      }
+
+      .workshop-art {
+        height: 230px;
+        min-height: 230px;
+      }
+
+      footer {
+        display: block;
+        line-height: 1.8;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <header>
+    <a href="#inicio" class="brand">
+      <div class="brand-name">Ágora <span>Token</span></div>
+    </a>
+
+    <button class="menu-btn" aria-label="Abrir menú" onclick="toggleMenu()">☰</button>
+
+    <nav id="mainNav">
+      <a href="#inicio">Inicio</a>
+      <a href="#talleres">Talleres</a>
+      <a href="#novedades">Novedades</a>
+      <a href="#cursos">Cursos</a>
+      <a href="#revista">Revista</a>
+      <a href="#entrevistas">Entrevistas</a>
+      <a href="./valores.html" class="fade-navigation">Sobre nosotros</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero" id="inicio">
+
+      <div class="shape shape-a"></div>
+      <div class="shape shape-b"></div>
+      <div class="shape shape-c"></div>
+      <div class="shape shape-d"></div>
+
+      <div class="hero-inner">
+
+        <div class="eyebrow">
+          La cultura no se fragmenta; se disfruta
+        </div>
+
+        <h1>
+          ÁGORA<br>
+          <span class="red">TOKEN</span>
+        </h1>
+
+        <p class="hero-copy">
+          Ni club, secta, grupo ni comunidad;
+          <strong>Ágora para todo el mundo</strong>.
+          Arte contemporáneo, popular y digital para combatir la grieta.
+        </p>
+
+        <div class="hero-number">56</div>
+
+      </div>
+
+      <div class="scroll">
+        Descubrí ↓
+      </div>
+
+    </section>
+
+
+    <section class="workshops" id="talleres">
+
+      <!-- CINTA INFINITA -->
+      <div class="section-strip-wrapper">
+
+        <div class="section-strip">
+
+          <span>ÁGORA TOKEN</span>
+          <span>ARTE Y CULTURA</span>
+          <span>TALLERES</span>
+          <span>ÁGORA TOKEN</span>
+          <span>ARTE Y CULTURA</span>
+          <span>TALLERES</span>
+
+          <!-- Segunda copia para que nunca aparezca el fondo -->
+          <span>ÁGORA TOKEN</span>
+          <span>ARTE Y CULTURA</span>
+          <span>TALLERES</span>
+          <span>ÁGORA TOKEN</span>
+          <span>ARTE Y CULTURA</span>
+          <span>TALLERES</span>
+
+        </div>
+
+      </div>
+
+<section class="news-section" id="novedades">
+      <div class="news-inner">
+        <div class="news-heading">
+          <h2>Novedades</h2>
+          <p>Lo que hacemos, compartimos y descubrimos. Novedades de Ágora Token, como en Instagram.</p>
+        </div>
+
+        <div class="news-grid">
+          <!-- Para sumar novedades, duplicá una tarjeta, cambiá el id y completá la información correspondiente en novedades.html. -->
+          <a class="news-card" href="novedades.html?id=primera-novedad">
+            <img class="news-image" src="imagenes/novedad-inicial.jpg" alt="Imagen de la novedad de Ágora Token" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="news-image-placeholder" role="img" aria-label="Espacio reservado para la imagen de la novedad" style="display:none">Tu imagen<br>aquí</div>
+            <div class="news-info">
+              <small>Novedad</small>
+              <h3>Título de la publicación</h3>
+              <p>Una breve descripción para contar la novedad, presentar la actividad o compartir lo que publicamos.</p>
+              <span class="news-card-cta">Leer novedad ↗</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+        
+      <div class="workshops-inner">
+
+          
+        <div class="section-label">
+
+          <h2>Talleres</h2>
+
+          <p>
+            Espacios para aprender, practicar y producir.
+            Próximamente se incorporarán nuevos talleres.
+          </p>
+
+        </div>
+
+
+        <!-- GRILLA DE TALLERES -->
+        <div class="workshops-grid">
+
+
+          <!-- TALLER 01 -->
+
+          <article class="workshop-card">
+
+            <div class="workshop-art"></div>
+
+            <div class="workshop-info">
+
+              <div class="tag">
+                Taller 01 · 20 clases
+              </div>
+
+              <h3>
+                Ritmo y<br>
+                poesía<br>
+                improvisada
+              </h3>
+
+              <p>
+                Un taller práctico sobre freestyle, métrica, ritmo,
+                rima, recursos retóricos, respuesta, escena y agresividad.
+              </p>
+
+              <div class="pillars">
+                <span>Estructura</span>
+                <span>Flow</span>
+                <span>Punchline</span>
+                <span>Respuesta</span>
+                <span>Escena</span>
+                <span>Agresividad</span>
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- TALLER 02 -->
+
+          <article class="workshop-card">
+
+            <div class="workshop-art videogames-art"></div>
+
+            <div class="workshop-info">
+
+              <div class="tag">
+                Taller 02 · Desarrollo
+              </div>
+
+              <h3>
+                Desarrollo<br>
+                de<br>
+                videojuegos
+              </h3>
+
+              <p>
+                Un espacio para explorar la creación de videojuegos:
+                ideas, diseño, programación y construcción de mundos
+                interactivos desde cero.
+              </p>
+
+              <div class="pillars">
+                <span>Diseño</span>
+                <span>Programación</span>
+                <span>Gameplay</span>
+                <span>Narrativa</span>
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- CLUB 01: requiere una imagen propia -->
+          <a class="workshop-card workshop-link" href="club.html?id=lectura" aria-label="Ver información del Club de Lectura">
+            <div class="workshop-art has-image">
+              <img src="imagenes/club-lectura.jpg" alt="Imagen del Club de Lectura" loading="lazy">
+            </div>
+            <div class="workshop-info">
+              <div class="tag">Club 01 · Literatura</div>
+              <h3>Club de<br>lectura</h3>
+              <p>Un lugar para encontrarnos alrededor de los libros, compartir interpretaciones y discutir distintas formas de leer una misma obra.</p>
+              <div class="pillars">
+                <span>Literatura</span>
+                <span>Debate</span>
+                <span>Lectura</span>
+                <span>Comunidad</span>
+              </div>
+              <span class="club-card-cta">Conocer el club ↗</span>
+            </div>
+          </a>
+
+          <!-- CLUB 02: requiere una imagen propia -->
+          <a class="workshop-card workshop-link" href="club.html?id=musica-espanol" aria-label="Ver información del Club de Música en Español">
+            <div class="workshop-art has-image">
+              <img src="imagenes/club-musica-espanol.jpg" alt="Imagen del Club de Música en Español" loading="lazy">
+            </div>
+            <div class="workshop-info">
+              <div class="tag">Club 02 · Música</div>
+              <h3>Club de<br>música<br>en español</h3>
+              <p>Un espacio para escuchar, compartir y conversar sobre canciones, artistas y escenas musicales en español, explorando sus letras, sonidos e imaginarios.</p>
+              <div class="pillars">
+                <span>Música</span>
+                <span>Escucha</span>
+                <span>Letras</span>
+                <span>Cultura popular</span>
+              </div>
+              <span class="club-card-cta">Conocer el club ↗</span>
+            </div>
+          </a>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+    
+
+    <section class="about" id="sobre">
+
+      <div class="about-inner">
+
+        <div class="about-title">
+          Sobre<br>
+          <span>nosotros</span>
+        </div>
+
+        <div>
+
+          <p class="about-text">
+
+            <strong>Ágora Token</strong> es una comunidad que no distingue
+            entre un “ellos” y un “nosotros”: engloba un <strong>todos</strong>.
+            Un espacio para poner en común aquello que hacemos, pensamos
+            y creamos.
+
+          </p>
+
+          <p class="about-note">
+
+            El nombre nace de la idea del ágora como lugar de encuentro:
+            no un podio reservado para unos pocos, sino una plaza donde
+            distintas formas de arte pueden hacerse visibles.
+
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer id="contacto">
+
+    <div>
+      Ágora <b>Token</b> · Arte sin fronteras
+    </div>
+
+    <div>
+      © <span id="year"></span>
+    </div>
+
+  </footer>
+
+  <script>
+
+    document
+      .querySelectorAll('a.fade-navigation')
+      .forEach(link => {
+        link.addEventListener('click', event => {
+          if (
+            event.defaultPrevented ||
+            event.button !== 0 ||
+            event.metaKey ||
+            event.ctrlKey ||
+            event.shiftKey ||
+            event.altKey
+          ) return;
+
+          event.preventDefault();
+          const destination = link.href;
+          document.getElementById("mainNav")?.classList.remove("open");
+          document.documentElement.classList.add('fade-out');
+          void document.documentElement.offsetHeight;
+
+          window.setTimeout(() => {
+            window.location.assign(destination);
+          }, 700);
+        });
+      });
+
+    function toggleMenu() {
+      document
+        .getElementById("mainNav")
+        .classList
+        .toggle("open");
+    }
+
+    document
+      .querySelectorAll("#mainNav a")
+      .forEach(link => {
+
+        link.addEventListener("click", () => {
+
+          document
+            .getElementById("mainNav")
+            .classList
+            .remove("open");
+
+        });
+
+      });
+
+    document
+      .getElementById("year")
+      .textContent = new Date().getFullYear();
+
+    /* ---------- Fade-in al entrar ---------- */
+    const root = document.documentElement;
+
+    function showPage() {
+      root.classList.remove('fade-out');
+      root.classList.add('ready');
+    }
+
+    // Doble requestAnimationFrame: asegura que el estado en negro se pinte primero
+    requestAnimationFrame(() => requestAnimationFrame(showPage));
+
+    // Respaldo por si el navegador pausa los frames
+    setTimeout(showPage, 1200);
+
+    // Al volver con el botón "atrás", limpia el fade-out y vuelve a mostrar la página
+    window.addEventListener('pageshow', showPage);
+
+  </script>
+
+</body>
+</html>

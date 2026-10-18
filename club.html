@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Información de los clubes de Ágora Token.">
+  <title>Club — Ágora Token</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--red:#d71920;--red-dark:#9d1117;--black:#080808;--black-2:#111;--paper:#eee9df;--gray:#9d9d9d}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;background:var(--black)}
+    body{min-height:100vh;background:var(--black);color:var(--paper);font-family:"Barlow Condensed",Arial,sans-serif}
+    header{position:sticky;top:0;z-index:10;min-height:78px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:rgba(8,8,8,.96);border-bottom:1px solid rgba(215,25,32,.6)}
+    .brand{font-family:"Archivo Black",sans-serif;font-size:22px;text-transform:uppercase;letter-spacing:-1px;color:var(--paper);text-decoration:none}
+    .brand span{color:var(--red)}
+    .back{color:var(--paper);text-decoration:none;text-transform:uppercase;font-weight:800;letter-spacing:1px;border:1px solid #555;padding:11px 16px;transition:.2s}
+    .back:hover{background:var(--red);border-color:var(--red)}
+    main{width:min(1200px,90%);margin:0 auto;padding:70px 0 100px}
+    .eyebrow{display:flex;align-items:center;gap:12px;color:var(--red);font-weight:800;text-transform:uppercase;letter-spacing:4px;margin-bottom:22px}
+    .eyebrow:before{content:"";height:3px;width:42px;background:var(--red)}
+    .club-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:start}
+    h1{font-family:"Archivo Black",sans-serif;font-size:clamp(48px,7vw,100px);line-height:.86;letter-spacing:-4px;text-transform:uppercase;overflow-wrap:anywhere}
+    .club-image-wrap{margin-top:30px;position:relative;background:#171717;border:2px solid var(--red);box-shadow:14px 14px 0 var(--red);min-height:280px;aspect-ratio:4/3;overflow:hidden}
+    .club-image-wrap img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover}
+    .image-missing{display:none;position:absolute;inset:0;align-items:center;justify-content:center;padding:28px;text-align:center;background:linear-gradient(135deg,transparent 0 35%,var(--red) 35% 60%,transparent 60%),#111;font-family:"Archivo Black",sans-serif;font-size:clamp(28px,4vw,48px);line-height:.95;text-transform:uppercase}
+    .image-missing.visible{display:flex}
+    .club-copy{padding-top:6px}
+    .club-copy .category{display:inline-block;color:var(--red);font-weight:800;text-transform:uppercase;letter-spacing:3px;margin-bottom:22px}
+    .lead{font-size:clamp(23px,2.5vw,32px);line-height:1.02;color:#d0ccc4}
+    .description{font-size:20px;line-height:1.2;color:#aaa;margin-top:24px;max-width:620px}
+    .pillars{display:flex;flex-wrap:wrap;gap:8px;margin-top:30px}
+    .pillars span{border:1px solid #555;padding:7px 11px;text-transform:uppercase;font-size:13px;letter-spacing:1px}
+    .detail-block{margin-top:70px;border-top:1px solid #393939;padding-top:28px;display:grid;grid-template-columns:.55fr 1.45fr;gap:30px}
+    .detail-block h2{font-family:"Archivo Black",sans-serif;text-transform:uppercase;font-size:clamp(30px,4vw,48px);line-height:.9}
+    .detail-block p{font-size:21px;line-height:1.15;color:#c6c2bb;max-width:750px}
+    .not-found{padding:90px 0}
+    .not-found h1{font-size:clamp(42px,7vw,80px)}
+    .not-found p{font-size:22px;margin-top:22px;color:#bbb}
+    footer{border-top:1px solid #292929;padding:28px 5vw;display:flex;justify-content:space-between;gap:20px;color:#777;text-transform:uppercase;letter-spacing:1px;font-size:12px}
+    footer b{color:var(--red)}
+    @media(max-width:760px){header{min-height:70px;padding:0 5%}.brand{font-size:17px}.back{font-size:13px;padding:9px 11px}main{padding-top:45px}.club-layout{grid-template-columns:1fr;gap:35px}h1{letter-spacing:-2px}.club-image-wrap{margin-top:24px;min-height:220px}.detail-block{grid-template-columns:1fr;gap:18px;margin-top:52px}footer{display:block;line-height:1.9}}
+  </style>
+</head>
+<body>
+  <header>
+    <a class="brand" href="index.html">Ágora <span>Token</span></a>
+    <a class="back" href="index.html#talleres">← Volver a clubes</a>
+  </header>
+  <main id="club-content" aria-live="polite"></main>
+  <footer><div>Ágora <b>Token</b> · Arte sin fronteras</div><div>© <span id="year"></span></div></footer>
+  <script>
+    const clubs = {
+      "lectura": {
+        title: "Club de lectura",
+        category: "Club · Literatura",
+        image: "imagenes/club-lectura.jpg",
+        alt: "Imagen del Club de Lectura",
+        lead: "Un lugar para encontrarnos alrededor de los libros, compartir interpretaciones y discutir distintas formas de leer una misma obra.",
+        description: "El club propone un espacio de lectura compartida y diálogo. La obra no funciona como una respuesta cerrada: es un punto de partida para poner en común interpretaciones, preguntas y experiencias.",
+        tags: ["Literatura", "Debate", "Lectura", "Comunidad"]
+      },
+      "musica-espanol": {
+        title: "Club de música en español",
+        category: "Club · Música",
+        image: "imagenes/club-musica-espanol.jpg",
+        alt: "Imagen del Club de Música en Español",
+        lead: "Un espacio para escuchar, compartir y conversar sobre canciones, artistas y escenas musicales en español, explorando sus letras, sonidos e imaginarios.",
+        description: "La música se toma como una forma de cultura para escuchar con atención, intercambiar descubrimientos y conversar sobre lo que las canciones dicen, hacen sentir y ponen en circulación.",
+        tags: ["Música", "Escucha", "Letras", "Cultura popular"]
+      }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    const club = clubs[id];
+    const container = document.getElementById("club-content");
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    if (!club) {
+      document.title = "Club no encontrado — Ágora Token";
+      container.innerHTML = `
+        <section class="not-found">
+          <div class="eyebrow">Ágora Token · Clubes</div>
+          <h1>Club no encontrado</h1>
+          <p>Elegí un club desde la página principal para consultar su información.</p>
+        </section>`;
+    } else {
+      document.title = `${club.title} — Ágora Token`;
+      const tags = club.tags.map(tag => `<span>${tag}</span>`).join("");
+      container.innerHTML = `
+        <div class="eyebrow">Ágora Token · Clubes</div>
+        <section class="club-layout">
+          <div>
+            <h1>${club.title}</h1>
+            <div class="club-image-wrap">
+              <img src="${club.image}" alt="${club.alt}">
+              <div class="image-missing">Añadí la imagen<br>del club</div>
+            </div>
+          </div>
+          <div class="club-copy">
+            <span class="category">${club.category}</span>
+            <p class="lead">${club.lead}</p>
+            <p class="description">${club.description}</p>
+            <div class="pillars">${tags}</div>
+          </div>
+        </section>
+        <section class="detail-block">
+          <h2>Sobre el club</h2>
+          <p>${club.description}</p>
+        </section>`;
+      const img = container.querySelector(".club-image-wrap img");
+      const fallback = container.querySelector(".image-missing");
+      img.addEventListener("error", () => {
+        img.style.display = "none";
+        fallback.classList.add("visible");
+      });
+    }
+  </script>
+</body>
+</html>

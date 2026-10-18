@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre Nosotros — Ágora Token</title>
+  <meta name="description" content="Conoce la historia, visión, principios y manifiesto de Ágora Token. El arte y la cultura popular en el trono de las bellas artes.">
+
+  <!-- Marca la página como "con JS" para que el contenido no quede oculto si el JS está desactivado -->
+  <script>document.documentElement.classList.add('js');</script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:wght@400;500;600;700;800&display=swap');
+
+    :root {
+      --red: #d71920;
+      --red-dark: #9d1117;
+      --black: #080808;
+      --black-2: #111111;
+      --paper: #eee9df;
+      --gray: #9d9d9d;
+      --line: rgba(238, 233, 223, .18);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--black);
+    }
+
+    body {
+      background: var(--black);
+      color: var(--paper);
+      font-family: "Barlow Condensed", Arial, sans-serif;
+      overflow-x: hidden;
+      opacity: 1;
+      transition: opacity 700ms ease;           /* fade-in y fade-out */
+    }
+
+    /* Fade-in: arranca en negro y el JS agrega .ready para mostrarlo */
+    html.js:not(.ready) body {
+      opacity: 0;
+    }
+
+    html.fade-out body {
+      opacity: 0;
+    }
+
+    /* ---------- HEADER ---------- */
+
+    header {
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5vw;
+      background: rgba(8,8,8,.92);
+      border-bottom: 1px solid rgba(215,25,32,.55);
+      backdrop-filter: blur(8px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      text-decoration: none;
+      color: var(--paper);
+    }
+
+    .brand-name {
+      font-family: "Archivo Black", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      font-size: 22px;
+    }
+
+    .brand-name span {
+      color: var(--red);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+    }
+
+    nav a {
+      position: relative;
+      color: var(--paper);
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: .25s ease;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      left: 0;
+      bottom: -7px;
+      background: var(--red);
+      transition: .25s ease;
+    }
+
+    nav a:hover, nav a.active {
+      color: var(--red);
+    }
+
+    nav a:hover::after, nav a.active::after {
+      width: 100%;
+    }
+
+    .menu-btn {
+      display: none;
+      border: 0;
+      background: transparent;
+      color: var(--paper);
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    /* ---------- HERO SOBRE NOSOTROS ---------- */
+
+    .hero {
+      position: relative;
+      min-height: 650px;
+      height: 85vh;
+      max-height: 800px;
+      padding-top: 82px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 74% 42%, rgba(215,25,32,.15), transparent 25%),
+        linear-gradient(125deg, #050505 0%, #111 52%, #080808 100%);
+    }
+
+    .shape {
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .shape-a {
+      width: 48vw;
+      height: 95vh;
+      right: -13vw;
+      top: 2%;
+      background: var(--red);
+      opacity: .9;
+      clip-path: polygon(58% 0, 100% 0, 100% 100%, 20% 100%, 0 46%);
+      transform: rotate(2deg);
+    }
+
+    .shape-b {
+      width: 34vw;
+      height: 75vh;
+      right: 3vw;
+      top: 13%;
+      background: var(--black);
+      clip-path: polygon(53% 0, 100% 51%, 65% 100%, 0 100%, 18% 35%);
+      transform: rotate(-4deg);
+    }
+
+    .shape-c {
+      width: 25vw;
+      height: 40vh;
+      right: 24vw;
+      bottom: -7vh;
+      background: var(--red-dark);
+      clip-path: polygon(50% 0, 100% 100%, 0 100%);
+      opacity: .8;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 5;
+      width: min(1200px, 90%);
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--red);
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      display: block;
+      width: 44px;
+      height: 3px;
+      background: var(--red);
+    }
+
+    h1 {
+      max-width: 850px;
+      font-family: "Archivo Black", sans-serif;
+      font-size: clamp(54px, 8.5vw, 120px);
+      line-height: .82;
+      letter-spacing: -4px;
+      text-transform: uppercase;
+      color: var(--paper);
+    }
+
+    h1 .red {
+      color: var(--red);
+    }
+
+    .hero-copy {
+      max-width: 600px;
+      margin-top: 35px;
+      font-size: clamp(20px, 2.2vw, 28px);
+      line-height: 1.1;
+      color: #c9c5bd;
+    }
+
+    .hero-copy strong {
+      color: var(--paper);
+    }
+
+    .hero-number {
+      position: absolute;
+      right: 0;
+      bottom: -10px;
+      font-family: "Archivo Black", sans-serif;
+      font-size: clamp(110px, 17vw, 250px);
+      line-height: .7;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(238,233,223,.23);
+      user-select: none;
+    }
+
+    /* ---------- CINTA INFINITA ---------- */
+
+    .section-strip-wrapper {
+      width: 100%;
+      overflow: hidden;
+      background: var(--paper);
+      border-top: 2px solid var(--black);
+      border-bottom: 2px solid var(--black);
+    }
+
+    .section-strip {
+      display: flex;
+      width: max-content;
+      animation: ticker 22s linear infinite;
+      will-change: transform;
+    }
+
+    .section-strip span {
+      padding: 13px 35px;
+      font-family: "Archivo Black", sans-serif;
+      text-transform: uppercase;
+      font-size: 18px;
+      letter-spacing: 1px;
+      white-space: nowrap;
+      border-right: 2px solid var(--black);
+      color: var(--black);
+      background: var(--paper);
+    }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ---------- MANIFIESTO Y MANOS EN LA CULTURA ---------- */
+
+    .manifesto {
+      position: relative;
+      background: var(--black-2);
+      padding: 110px 0;
+      border-bottom: 1px solid #222;
+    }
+
+    .manifesto-inner {
+      width: min(1200px, 90%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .manifesto-box h2 {
+      font-family: "Archivo Black", sans-serif;
+      font-size: clamp(38px, 5vw, 65px);
+      line-height: .88;
+      text-transform: uppercase;
+      letter-spacing: -2px;
+      margin-bottom: 25px;
+    }
+
+    .manifesto-box h2 span {
+      color: var(--red);
+    }
+
+    .manifesto-box p {
+      font-size: 21px;
+      line-height: 1.25;
+      color: #bbb;
+      margin-bottom: 20px;
+    }
+
+    .manifesto-box p strong {
+      color: var(--paper);
+    }
+
+    .quote-card {
+      background: var(--red);
+      color: var(--black);
+      padding: 40px;
+      border: 2px solid var(--black);
+      box-shadow: 12px 12px 0 var(--paper);
+      position: relative;
+    }
+
+    .quote-card h3 {
+      font-family: "Archivo Black", sans-serif;
+      font-size: 32px;
+      text-transform: uppercase;
+      line-height: .95;
+      margin-bottom: 15px;
+    }
+
+    .quote-card p {
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--black);
+    }
+
+    /* ---------- PRINCIPIOS Y VALORES ---------- */
+
+    .principles {
+      position: relative;
+      background: var(--red);
+      color: var(--black);
+      padding: 100px 0;
+    }
+
+    .principles-inner {
+      width: min(1200px, 90%);
+      margin: 0 auto;
+    }
+
+    .principles-header {
+      margin-bottom: 60px;
+    }
+
+    .principles-header h2 {
+      font-family: "Archivo Black", sans-serif;
+      font-size: clamp(45px, 7vw, 90px);
+      line-height: .8;
+      text-transform: uppercase;
+      letter-spacing: -3px;
+    }
+
+    .principles-header p {
+      font-size: 22px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-top: 10px;
+    }
+
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .principle-card {
+      background: var(--black);
+      color: var(--paper);
+      padding: 30px;
+      border: 2px solid var(--black);
+      box-shadow: 8px 8px 0 rgba(8,8,8,.2);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .principle-num {
+      font-family: "Archivo Black", sans-serif;
+      font-size: 40px;
+      color: var(--red);
+      line-height: 1;
+      margin-bottom: 15px;
+    }
+
+    .principle-card p {
+      font-size: 19px;
+      line-height: 1.2;
+      color: #ddd;
+      font-weight: 500;
+    }
+
+    /* ---------- 7 ARTES MARGINADAS ---------- */
+
+    .arts-section {
+      position: relative;
+      background: var(--black);
+      padding: 110px 0;
+      overflow: hidden;
+    }
+
+    .arts-inner {
+      width: min(1200px, 90%);
+      margin: 0 auto;
+    }
+
+    .arts-header {
+      margin-bottom: 50px;
+    }
+
+    .arts-header h2 {
+      font-family: "Archivo Black", sans-serif;
+      font-size: clamp(40px, 6vw, 75px);
+      line-height: .85;
+      text-transform: uppercase;
+      letter-spacing: -3px;
+    }
+
+    .arts-header h2 span {
+      color: var(--red);
+    }
+
+    .arts-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .art-item {
+      background: #121212;
+      border: 1px solid #282828;
+      padding: 20px 15px;
+      position: relative;
+      transition: transform .2s ease, border-color .2s ease;
+    }
+
+    .art-item:hover {
+      transform: translateY(-5px);
+      border-color: var(--red);
+    }
+
+    .art-item h4 {
+      font-family: "Archivo Black", sans-serif;
+      font-size: 24px;
+      text-transform: uppercase;
+      color: var(--paper);
+      margin-bottom: 8px;
+    }
+
+    .art-item p {
+      font-size: 16px;
+      color: #888;
+      line-height: 1.15;
+    }
+
+    .art-item.featured {
+      grid-column: span 2;
+      background: linear-gradient(135deg, #181818 0%, #0d0d0d 100%);
+      border: 2px solid var(--red);
+    }
+
+    .art-item.featured h4 {
+      color: var(--red);
+      font-size: 28px;
+    }
+
+    /* ---------- OBJETIVOS Y VISIÓN ---------- */
+
+    .objectives {
+      position: relative;
+      background: #0d0d0d;
+      border-top: 1px solid #222;
+      padding: 110px 0;
+    }
+
+    .objectives-inner {
+      width: min(1200px, 90%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 70px;
+    }
+
+    .objectives-title h2 {
+      font-family: "Archivo Black", sans-serif;
+      font-size: clamp(45px, 6.5vw, 80px);
+      line-height: .85;
+      text-transform: uppercase;
+      letter-spacing: -3px;
+      position: sticky;
+      top: 110px;
+    }
+
+    .objectives-title h2 span {
+      color: var(--red);
+    }
+
+    .objectives-list {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .obj-item {
+      background: var(--black-2);
+      border-left: 4px solid var(--red);
+      padding: 22px 25px;
+    }
+
+    .obj-item h3 {
+      font-family: "Archivo Black", sans-serif;
+      font-size: 22px;
+      text-transform: uppercase;
+      color: var(--paper);
+      margin-bottom: 6px;
+    }
+
+    .obj-item p {
+      font-size: 18px;
+      line-height: 1.2;
+      color: #aaa;
+    }
+
+    /* ---------- PÚBLICO Y COMUNIDAD ---------- */
+
+    .target-section {
+      background: var(--paper);
+      color: var(--black);
+      padding: 100px 0;
+    }
+
+    .target-inner {
+      width: min(1200px, 90%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .target-text h2 {
+      font-family: "Archivo Black", sans-serif;
+      font-size: clamp(40px, 6vw, 70px);
+      line-height: .85;
+      text-transform: uppercase;
+      letter-spacing: -2px;
+      margin-bottom: 25px;
+    }
+
+    .target-text p {
+      font-size: 21px;
+      line-height: 1.2;
+      font-weight: 500;
+      margin-bottom: 18px;
+      color: #222;
+    }
+
+    .target-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+    .target-pills span {
+      background: var(--black);
+      color: var(--paper);
+      padding: 8px 16px;
+      font-family: "Archivo Black", sans-serif;
+      text-transform: uppercase;
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    footer {
+      border-top: 1px solid #292929;
+      padding: 28px 5vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #777;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 12px;
+      background: var(--black);
+    }
+
+    footer b {
+      color: var(--red);
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+
+    @media (max-width: 1000px) {
+      .principles-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .arts-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .art-item.featured {
+        grid-column: span 2;
+      }
+
+      .objectives-inner, .manifesto-inner, .target-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .objectives-title h2 {
+        position: static;
+      }
+    }
+
+    @media (max-width: 850px) {
+      header {
+        height: 70px;
+      }
+
+      nav {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 100%;
+        padding: 25px 7%;
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        background: rgba(8,8,8,.97);
+        border-bottom: 1px solid var(--red);
+      }
+
+      nav.open {
+        display: flex;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .hero {
+        min-height: 550px;
+        padding-top: 70px;
+      }
+
+      .shape-a {
+        width: 75vw;
+        right: -35vw;
+      }
+
+      .shape-b {
+        width: 55vw;
+        right: -12vw;
+      }
+
+      h1 {
+        letter-spacing: -3px;
+        font-size: clamp(48px, 12vw, 90px);
+      }
+
+      .hero-copy {
+        max-width: 85%;
+      }
+
+      .principles-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .brand-name {
+        font-size: 17px;
+      }
+
+      .hero-copy {
+        max-width: 100%;
+        font-size: 19px;
+      }
+
+      .hero-number {
+        display: none;
+      }
+
+      .arts-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .art-item.featured {
+        grid-column: auto;
+      }
+
+      footer {
+        display: block;
+        line-height: 1.8;
+      }
+    }
+
+    /* ---------- ANIMACIONES DE ENTRADA ---------- */
+
+    /* Header que baja desde arriba */
+    header {
+      animation: headerDrop 900ms cubic-bezier(.2,.7,.2,1) 150ms backwards;
+    }
+
+    @keyframes headerDrop {
+      from { transform: translateY(-100%); opacity: 0; }
+      to   { transform: translateY(0);     opacity: 1; }
+    }
+
+    /* Links del menú en cascada */
+    @media (min-width: 851px) {
+      nav a {
+        animation: navIn 600ms cubic-bezier(.2,.7,.2,1) backwards;
+      }
+      nav a:nth-child(1) { animation-delay: 400ms; }
+      nav a:nth-child(2) { animation-delay: 470ms; }
+      nav a:nth-child(3) { animation-delay: 540ms; }
+      nav a:nth-child(4) { animation-delay: 610ms; }
+      nav a:nth-child(5) { animation-delay: 680ms; }
+      nav a:nth-child(6) { animation-delay: 750ms; }
+      nav a:nth-child(7) { animation-delay: 820ms; }
+    }
+
+    @keyframes navIn {
+      from { opacity: 0; transform: translateY(-14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Estado inicial (solo si hay JS) */
+    html.js .reveal:not(.visible) {
+      opacity: 0;
+    }
+
+    html.js .reveal.visible {
+      animation: revealUp 850ms cubic-bezier(.2,.7,.2,1) backwards;
+      animation-delay: var(--d, 0ms);
+    }
+
+    /* Títulos grandes: se descubren como un telón, de izquierda a derecha */
+    html.js .reveal-title.visible {
+      animation: revealWipe 1000ms cubic-bezier(.77,0,.18,1) backwards;
+      animation-delay: var(--d, 0ms);
+    }
+
+    @keyframes revealUp {
+      from { opacity: 0; transform: translateY(45px) scale(.97); }
+      to   { opacity: 1; transform: translateY(0)    scale(1); }
+    }
+
+    @keyframes revealWipe {
+      from {
+        opacity: 0;
+        clip-path: inset(0 100% 0 0);
+        transform: translateX(-40px);
+      }
+      to {
+        opacity: 1;
+        clip-path: inset(0 0 0 0);
+        transform: translateX(0);
+      }
+    }
+
+    /* Detalles extra: hover en tarjetas */
+    .principle-card {
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .principle-card:hover {
+      transform: translate(-4px, -4px);
+      box-shadow: 12px 12px 0 var(--paper);
+    }
+
+    .obj-item {
+      transition: transform .25s ease, border-color .25s ease;
+    }
+
+    .obj-item:hover {
+      transform: translateX(8px);
+    }
+
+    /* Respeta a quienes desactivan las animaciones */
+    @media (prefers-reduced-motion: reduce) {
+      header, nav a,
+      html.js .reveal.visible,
+      html.js .reveal-title.visible {
+        animation: none !important;
+      }
+
+      html.js .reveal:not(.visible) {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <a href="index.html#inicio" class="brand fade-navigation">
+      <div class="brand-name">Ágora <span>Token</span></div>
+    </a>
+
+    <button class="menu-btn" aria-label="Abrir menú" onclick="toggleMenu()">☰</button>
+
+    <nav id="mainNav">
+      <a href="index.html#inicio" class="fade-navigation">Inicio</a>
+      <a href="index.html#talleres" class="fade-navigation">Talleres</a>
+      <a href="index.html#cursos" class="fade-navigation">Cursos</a>
+      <a href="index.html#revista" class="fade-navigation">Revista</a>
+      <a href="index.html#entrevistas" class="fade-navigation">Entrevistas</a>
+      <a href="#" class="active">Sobre nosotros</a>
+      <a href="index.html#contacto" class="fade-navigation">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- PRINCIPIOS Y VALORES -->
+    <section class="principles">
+      <div class="principles-inner">
+
+        <div class="principles-header">
+          <h2>Principios & Valores</h2>
+          <p>Del Olor al Hogar, dijo una vez Bersuit.</p>
+        </div>
+
+        <div class="principles-grid">
+
+          <article class="principle-card">
+            <div class="principle-num">01</div>
+            <p>La cultura no se fragmenta.</p>
+          </article>
+
+          <article class="principle-card">
+            <div class="principle-num">02</div>
+            <p>Las instituciones relacionadas a la cultura resultan de gran valor simbólico y social para poder reflexionar y ampliar la discusión crítica característica del arte.</p>
+          </article>
+
+          <article class="principle-card">
+            <div class="principle-num">03</div>
+            <p>El aura se encuentra en lo banal, conocido, cotidiano, maculado; lo conocido y dado a conocer; el aura del arte radica más en su nostalgia que en su presencia.</p>
+          </article>
+
+          <article class="principle-card">
+            <div class="principle-num">04</div>
+            <p>La cultura distingue a las comunidades en su creación y origen, mas no de su consumo y apreciación.</p>
+          </article>
+
+          <article class="principle-card">
+            <div class="principle-num">05</div>
+            <p>El arte no se vende como quien vende un producto por sus beneficios; el arte se vende solo.</p>
+          </article>
+
+          <article class="principle-card">
+            <div class="principle-num">06</div>
+            <p>Con el arte se dialoga de manera constante, pues consta de una acción rutinaria y nada excepcional.</p>
+          </article>
+
+          <article class="principle-card">
+            <div class="principle-num">07</div>
+            <p>Los artistas no deben ser reconocidos como tales para poder serlo.</p>
+          </article>
+
+          <article class="principle-card">
+            <div class="principle-num">08</div>
+            <p>Los nombres se bifurcan entre pensamientos lánguidos, pues poco importan a los fines de la obra.</p>
+          </article>
+
+          <article class="principle-card">
+            <div class="principle-num">09</div>
+            <p>La sociedad postula su arte, su consumo, su pasión; no escuchar a la sociedad resulta un mal peor.</p>
+          </article>
+
+          <article class="principle-card">
+            <div class="principle-num">10</div>
+            <p>Bienaventurado quien persigne al valorar el arte como fenómeno de inclusión social y no de un cenáculo elitista.</p>
+          </article>
+
+          <article class="principle-card">
+            <div class="principle-num">11</div>
+            <p>Vanagloriar a todos por igual o no dedicarse a la vanagloria.</p>
+          </article>
+
+          <article class="principle-card">
+            <div class="principle-num">12</div>
+            <p>El conformismo es el peor de los males que aquejan a la república del bienestar.</p>
+          </article>
+
+          <article class="principle-card">
+            <div class="principle-num">13</div>
+            <p>La belleza nace de reminiscencias de la vida; por ello el arte es vida y, a la vez, la vida misma.</p>
+          </article>
+
+          <article class="principle-card">
+            <div class="principle-num">14</div>
+            <p>El lenguaje sirve de motor para cambiar el pensamiento: ¡rompamos los enmenderatos del lenguaje!</p>
+          </article>
+
+          <article class="principle-card">
+            <div class="principle-num">15</div>
+            <p>Somos niños con colores o adultos sin color. Ser o no ser: esa es la cuestión.</p>
+          </article>
+
+          <article class="principle-card">
+            <div class="principle-num">16</div>
+            <p>El meollo de la problemática siempre será el status quo.</p>
+          </article>
+
+          <article class="principle-card">
+            <div class="principle-num">17</div>
+            <p>Las artes son un fin en sí mismas, pues no son nunca un mero medio.</p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- LAS 7 ARTES TRATADAS -->
+    <section class="arts-section">
+      <div class="arts-inner">
+
+        <div class="arts-header">
+          <h2>Las Artes <span>Token</span></h2>
+          <p style="color: #999; font-size: 20px; max-width: 600px; margin-top: 10px;">
+            Las distintas cosmovisiones que contemplan el mundo Tokenista.
+          </p>
+        </div>
+
+        <div class="arts-grid">
+
+          <div class="art-item featured">
+            <h4>Sonósfera</h4>
+            <p>Aquello que se oye; que se interpreta; que moviliza.</p>
+          </div>
+
+              <div class="art-item featured">
+                  <h4>Optósfera</h4>
+            <p>Aquello que se ve; que se enfoca; que impacta.</p>
+          </div>
+
+          <div class="art-item featured">
+              <h4>Ludósfera</h4>
+            <p>Aquello que se juega; que desafía; que emociona.</p>
+          </div>
+
+          <div class="art-item featured">
+              <h4>Grafósfera</h4>
+            <p>Aquello que se lee; que interpela; que reflexiona.</p>
+          </div>
+
+          <div class="art-item featured">
+            <h4>Sensósfera</h4>
+            <p>Aquello que se siente; que se experimenta; que se disfruta.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- OBJETIVOS -->
+    <section class="objectives">
+      <div class="objectives-inner">
+
+        <div class="objectives-title">
+          <h2>Nuestros<br><span>Objetivos</span></h2>
+        </div>
+
+        <div class="objectives-list">
+
+          <div class="obj-item">
+            <h3>01. Espacio de Circulación</h3>
+            <p>Ofrecer un lugar donde pueda efectuarse la práctica, consumo, creación, crítica y goce de las manifestaciones populares.</p>
+          </div>
+
+          <div class="obj-item">
+            <h3>02. Estudio del Arte por el Arte</h3>
+            <p>Proclamar una visión crítica que estudie las artes por lo que son en sí mismas y no únicamente para hacer sociología.</p>
+          </div>
+
+          <div class="obj-item">
+            <h3>03. Integración Horizontal</h3>
+            <p>Acercar las artes mistificadas (bellas artes) al entorno popular sin ignorarlas, sino integrándolas en una visión horizontal.</p>
+          </div>
+
+          <div class="obj-item">
+            <h3>04. Voz a los Emergentes</h3>
+            <p>Dar voz tanto a los artistas que emergen de la cultura popular como a los críticos del ser común.</p>
+          </div>
+
+          <div class="obj-item">
+            <h3>05. Derribar Sesgos</h3>
+            <p>Eliminar las barreras entre tecnología y naturaleza, y la falsa idea de que el arte pertenece a lo exclusivo y lejano.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PÚBLICO OBJETIVO & COMUNIDAD -->
+    <section class="target-section">
+      <div class="target-inner">
+
+        <div class="target-text">
+          <h2>A quiénes <span>buscamos</span></h2>
+          <p>
+            Apuntamos al ser común de la mediana poblacional: a quien escucha música sin importar el género, a quien consume deportes, a quien disfruta de la gastronomía o contempla la moda como un retrato urbano.
+          </p>
+          <p>
+            Priorizamos a la juventud, estudiantes y mentes curiosas con el afán de generar un cambio cultural profundo, didáctico, introspectivo y pedagógico.
+          </p>
+
+          <div class="target-pills">
+            <span>Rioplatense</span>
+            <span>20 - 30 Años</span>
+            <span>Estudiantes</span>
+            <span>Creadores</span>
+            <span>Críticos</span>
+          </div>
+        </div>
+
+        <div style="background: var(--black); color: var(--paper); padding: 40px; border: 2px solid var(--black);">
+          <h3 style="font-family: 'Archivo Black', sans-serif; font-size: 30px; text-transform: uppercase; color: var(--red); margin-bottom: 15px;">
+            Impacto Intelectual
+          </h3>
+          <p style="font-size: 18px; line-height: 1.25; color: #ccc;">
+            Promovemos la práctica y el foco cultural sobre las artes ignoradas por el canon tradicional. No buscamos alterar la forma en que ves el mundo, sino ampliar la mirada y ofrecerte herramientas para dialogar con él.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="contacto">
+    <div>
+      Ágora <b>Token</b> · Arte sin fronteras
+    </div>
+    <div>
+      © <span id="year"></span>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("mainNav").classList.toggle("open");
+    }
+
+    document.querySelectorAll("#mainNav a").forEach(link => {
+      link.addEventListener("click", () => {
+        document.getElementById("mainNav").classList.remove("open");
+      });
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    /* ---------- Fade-out al navegar a otra página ---------- */
+    document.querySelectorAll('a.fade-navigation').forEach(link => {
+      link.addEventListener('click', event => {
+        if (
+          event.defaultPrevented ||
+          event.button !== 0 ||
+          event.metaKey || event.ctrlKey || event.shiftKey || event.altKey
+        ) return;
+
+        event.preventDefault();
+        const destination = link.href;
+        document.getElementById("mainNav")?.classList.remove("open");
+        document.documentElement.classList.add('fade-out');
+
+        setTimeout(() => window.location.assign(destination), 700);
+      });
+    });
+
+    /* ---------- Fade-in al entrar ---------- */
+    const root = document.documentElement;
+
+    function showPage() {
+      root.classList.remove('fade-out');
+      root.classList.add('ready');
+    }
+
+    // Doble requestAnimationFrame: asegura que el estado en negro se pinte primero
+    requestAnimationFrame(() => requestAnimationFrame(showPage));
+
+    // Respaldo por si el navegador pausa los frames
+    setTimeout(showPage, 1200);
+
+    /* Si se vuelve con el botón "atrás", se limpia el estado de fade-out */
+    window.addEventListener('pageshow', showPage);
+
+    /* ---------- Reveal al hacer scroll ---------- */
+    const targets = [
+      { sel: '.principles-header h2, .arts-header h2, .objectives-title h2, .target-text h2', title: true },
+      { sel: '.principles-header p, .arts-header p, .target-text p, .target-pills, .target-inner > div:last-child' },
+      { sel: '.principle-card, .art-item, .obj-item' }
+    ];
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+
+    targets.forEach(group => {
+      document.querySelectorAll(group.sel).forEach(el => {
+        el.classList.add(group.title ? 'reveal-title' : 'reveal');
+        if (group.title) el.classList.add('reveal');
+
+        // Escalonado: cada hermano espera un poquito más (se reinicia cada 3)
+        const index = Array.from(el.parentElement.children).indexOf(el);
+        el.style.setProperty('--d', ((index % 3) * 110) + 'ms');
+
+        observer.observe(el);
+      });
+    });
+  </script>
+
+</body>
+</html>

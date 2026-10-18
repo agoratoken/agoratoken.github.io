@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Novedades, actividades y publicaciones de Ágora Token.">
+  <title>Novedad — Ágora Token</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--red:#d71920;--red-dark:#9d1117;--black:#080808;--black-2:#111;--paper:#eee9df;--gray:#9d9d9d}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;background:var(--black)}
+    body{min-height:100vh;background:var(--black);color:var(--paper);font-family:"Barlow Condensed",Arial,sans-serif}
+    header{position:sticky;top:0;z-index:10;min-height:78px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:rgba(8,8,8,.96);border-bottom:1px solid rgba(215,25,32,.6)}
+    .brand{font-family:"Archivo Black",sans-serif;font-size:22px;text-transform:uppercase;letter-spacing:-1px;color:var(--paper);text-decoration:none}.brand span{color:var(--red)}
+    .back{color:var(--paper);text-decoration:none;text-transform:uppercase;font-weight:800;letter-spacing:1px;border:1px solid #555;padding:11px 16px;transition:.2s}.back:hover{background:var(--red);border-color:var(--red)}
+    main{width:min(1120px,90%);margin:0 auto;padding:65px 0 100px}
+    .eyebrow{display:flex;align-items:center;gap:12px;color:var(--red);font-weight:800;text-transform:uppercase;letter-spacing:4px;margin-bottom:22px}.eyebrow:before{content:"";height:3px;width:42px;background:var(--red)}
+    .news-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:start}
+    h1{font-family:"Archivo Black",sans-serif;font-size:clamp(44px,6.5vw,88px);line-height:.88;letter-spacing:-3px;text-transform:uppercase;overflow-wrap:anywhere}
+    .image-wrap{position:relative;margin-top:30px;aspect-ratio:4/3;min-height:250px;background:#171717;border:2px solid var(--red);box-shadow:14px 14px 0 var(--red);overflow:hidden}
+    .image-wrap img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover}.image-missing{display:none;position:absolute;inset:0;align-items:center;justify-content:center;text-align:center;padding:25px;background:linear-gradient(135deg,transparent 0 35%,var(--red) 35% 60%,transparent 60%),#111;font-family:"Archivo Black",sans-serif;font-size:clamp(28px,4vw,48px);line-height:.95;text-transform:uppercase}
+    .copy{padding-top:5px}.date{display:inline-block;color:var(--red);font-weight:800;text-transform:uppercase;letter-spacing:3px;margin-bottom:22px}.lead{font-size:clamp(23px,2.5vw,32px);line-height:1.03;color:#d0ccc4}.body-copy{font-size:20px;line-height:1.2;color:#aaa;margin-top:24px;white-space:pre-line}.detail-block{margin-top:68px;border-top:1px solid #393939;padding-top:28px;display:grid;grid-template-columns:.55fr 1.45fr;gap:30px}.detail-block h2{font-family:"Archivo Black",sans-serif;text-transform:uppercase;font-size:clamp(30px,4vw,48px);line-height:.9}.detail-block p{font-size:21px;line-height:1.15;color:#c6c2bb;white-space:pre-line}.not-found{padding:90px 0}.not-found h1{font-size:clamp(42px,7vw,80px)}.not-found p{font-size:22px;margin-top:22px;color:#bbb}
+    footer{border-top:1px solid #292929;padding:28px 5vw;display:flex;justify-content:space-between;gap:20px;color:#777;text-transform:uppercase;letter-spacing:1px;font-size:12px}footer b{color:var(--red)}
+    @media(max-width:760px){header{min-height:70px;padding:0 5%}.brand{font-size:17px}.back{font-size:12px;padding:9px 10px}main{padding-top:42px}.news-layout{grid-template-columns:1fr;gap:35px}h1{letter-spacing:-2px}.image-wrap{margin-top:24px;min-height:210px}.detail-block{grid-template-columns:1fr;gap:18px;margin-top:50px}footer{display:block;line-height:1.9}}
+  </style>
+</head>
+<body>
+  <header><a class="brand" href="index.html">Ágora <span>Token</span></a><a class="back" href="index.html#novedades">← Volver a novedades</a></header>
+  <main id="news-content" aria-live="polite"></main>
+  <footer><div>Ágora <b>Token</b> · Arte sin fronteras</div><div>© <span id="year"></span></div></footer>
+  <script>
+    // Editá o duplicá estas entradas para publicar novedades nuevas.
+    // Cada tarjeta de index.html debe enlazar a novedades.html?id=EL_ID_CORRESPONDIENTE
+    const novedades = {
+      "primera-novedad": {
+        title: "Título de la publicación",
+        date: "Novedad · Ágora Token",
+        image: "imagenes/novedad-inicial.jpg",
+        alt: "Imagen de la novedad de Ágora Token",
+        lead: "Una breve descripción para contar la novedad, presentar la actividad o compartir lo que publicamos.",
+        body: "Usá este espacio para ampliar la información de la publicación. Podés contar qué pasó, presentar una actividad, compartir novedades del proyecto o sumar detalles que no entran en la tarjeta de la página principal.",
+        extra: "Esta página es compartida por todas las novedades. Para crear otra, agregá una entrada a este objeto y una tarjeta en la sección Novedades de index.html."
+      }
+    };
+    const id = new URLSearchParams(window.location.search).get("id");
+    const novedad = novedades[id];
+    const container = document.getElementById("news-content");
+    document.getElementById("year").textContent = new Date().getFullYear();
+    if (!novedad) {
+      document.title = "Novedad no encontrada — Ágora Token";
+      container.innerHTML = `<section class="not-found"><div class="eyebrow">Ágora Token · Novedades</div><h1>Novedad no encontrada</h1><p>Elegí una publicación desde la página principal para consultar su información.</p></section>`;
+    } else {
+      document.title = `${novedad.title} — Ágora Token`;
+      container.innerHTML = `
+        <div class="eyebrow">Ágora Token · Novedades</div>
+        <section class="news-layout">
+          <div><h1>${novedad.title}</h1><div class="image-wrap"><img src="${novedad.image}" alt="${novedad.alt}"><div class="image-missing">Añadí la imagen<br>de la novedad</div></div></div>
+          <div class="copy"><span class="date">${novedad.date}</span><p class="lead">${novedad.lead}</p><p class="body-copy">${novedad.body}</p></div>
+        </section>
+        <section class="detail-block"><h2>Más información</h2><p>${novedad.extra}</p></section>`;
+      const img = container.querySelector(".image-wrap img");
+      const fallback = container.querySelector(".image-missing");
+      img.addEventListener("error", () => { img.style.display = "none"; fallback.style.display = "flex"; });
+    }
+  </script>
+</body>
+</html>
